@@ -1,5 +1,6 @@
 #include "elf_file.h"
-#include <errno.h>
+
+
 FILE* elf_file_open(const char* path){
     FILE * file = fopen(path , "rb") ; 
     if(file == NULL){
@@ -12,7 +13,7 @@ FILE* elf_file_open(const char* path){
 
 
 bool elf_file_read_at(FILE* file , long offset , void * buffer , size_t size ) {
-    if(fseek(file , offset ,size  ) != 0){
+    if(fseek(file , offset ,SEEK_SET  ) != 0){
         perror("fseek");
         return false; 
     }
